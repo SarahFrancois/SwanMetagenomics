@@ -1,8 +1,14 @@
-#R-file Template
+# Title
+# Few sentences to explain what the script does.
 
-#Set the working directory ----
-setwd("/Users/user/Desktop/Bioinfo-Stat-Tools/R-stats-scripts-tuto/Data-synthesis-and-visualisation")
+# Author: Sarah François
+# Date of last change: 18-06-2019
 
-# Libraries
+# Set the working directory ----
+setwd("/Users/user/Desktop/SwanMetagenomics-code/VersionControl-GitHub")
 
-#Data loading
+# Libraries ----
+
+# Data loading ----
+
+# Formatting data ----
