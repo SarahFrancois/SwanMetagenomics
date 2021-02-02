@@ -20,32 +20,27 @@ Custom scripts used for data analysis of viral and 16S metagenomic datasets
 - seqtk
 
 ### Scripts
+ 
  #### Quality filtering
-./quality_filtering.sh sample_list.txt
-  # filters high-throughput sequencing reads >q30 quality and removes reads >45 bases length using Cutadapt
-
-#### De novo assembly
-./de_novo_assembly.sh sample_list.txt
-  # de novo assembly of cleaned reads using SPAdes
-
-##### Taxonomic assignment
+- quality_filtering.sh
+ 
+ #### De novo assembly
+- de_novo_assembly.sh
+ 
+ #### Taxonomic assignment
   ##### Viruses - DIAMOND
-    # Build DIAMOND databases
-    ./diamond_builddb.sh
-    # Taxonomic assignment using DIAMOND
-    ./diamond_search.sh SPAdes-assembly/contigs.fasta
+- diamond_builddb.sh  # Build databases
+- diamond_search.sh SPAdes-assembly/contigs.fasta # Taxonomic assignment
   ##### Prokaryotes - KRAKEN2 + BRACKEN
-    # Build KRAKEN RDP database
-    ./kraken_builddb.sh
-    # Taxonomic assignment using KRAKEN2 and refinement using BRACKEN
-    ./kraken_search.sh
+- kraken_builddb.sh # Build database
+- kraken_search.sh # Taxonomic assignment
 
 #### Mapping of viral contigs
-./mapping.sh SPAdes-assembly/contigs.fasta sample_list.txt
+- mapping.sh
 
-#### Contingency table creation for viral contigs
-./contingency_table_viruses.sh sample_list.txt # viruses
-./contingency_table_prokaryotes.sh sample_list.txt # prokaryotes
+#### Contingency tables creation
+- contingency_table_viruses.sh # viruses
+- contingency_table_prokaryotes.sh # prokaryotes
 
 
 ## Statistical pipeline 
