@@ -89,7 +89,7 @@ dev.off() # save to /path/to/the/working/directory
 
 # Accumulation curve
 pdf(file = "accumulation_curve.pdf")
-specaccum(t(filtered_data), xlab = "Number of samples", ylab = "Number of taxa")
+plot(specaccum(t(filtered_data), xlab = "Number of samples", ylab = "Number of taxa"))
 dev.off()
 
 
@@ -266,10 +266,10 @@ MET <- sample_data(metadata_woNA)
 physeq <- phyloseq(OTU, MET)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
-# 2- Diversity indexes and boxplots visualisation
+# 2- Diversity analyses and visualisation
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
 
-# Diversity indexes and boxplot visualisation
+# Alpha diversity indexes and boxplot visualisation
 alpha_meas = c("Observed", "Shannon", "Simpson") 
 richness <- plot_richness(physeq, x="VARIABLE", measures=alpha_meas) # x= variable 
 boxplot <- richness + geom_boxplot(data=richness$data, aes(x=VARIABLE, y=value, color=NULL), alpha=0.1) +
@@ -282,6 +282,13 @@ boxplot <- richness + geom_boxplot(data=richness$data, aes(x=VARIABLE, y=value, 
 pdf(file = "Diversity_indexes_boxplot.pdf")
 boxplot
 dev.off()
+
+# Bray-Curtis beta diversity analysis and visualisation
+comm.mds <- metaMDS(comm = filtered_data_t_woNA, distance = "bray", trace = FALSE, autotransform = FALSE) # Bray-Curtis distance measure without transformation of the data
+plot(comm.mds$points)
+MDS_xy <- data.frame(comm.mds$points)
+MDS_xy$VARIABLE <- metadata_woNA$VARIABLE # set variable of interest
+ggplot(MDS_xy, aes(MDS1, MDS2, color = VARIABLE)) + geom_point() + theme_bw()
 
 
 
